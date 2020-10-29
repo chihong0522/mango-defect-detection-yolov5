@@ -1,0 +1,28 @@
+# COCO 2017 dataset http://cocodataset.org - first 128 training images
+# Train command: python train.py --data coco128.yaml
+# Default dataset location is next to /yolov5:
+#   /parent_folder
+#     /coco128
+#     /yolov5
+
+
+# download command/URL (optional)
+#download: https://github.com/ultralytics/yolov5/releases/download/v1.0/coco128.zip
+
+# train and val data as 1) directory: path/images/, 2) file: path/images.txt, or 3) list: [path1/images/, path2/images/]
+train: ./mango-defects-data/images/train/  # 128 images
+val: ./mango-defects-data/images/dev/  # 128 images
+
+# number of classes
+nc: 5
+
+# class names
+names: ['machine-hurt', 'bad-color', 'anthrax', 'milk-adsorption', 'black-spot']
+
+names_mapping: {
+  '不良-機械傷害':'machine-hurt',
+  '不良-著色不佳':'bad-color',
+  '不良-炭疽病':'anthrax',
+  '不良-乳汁吸附':'milk-adsorption',
+  '不良-黑斑病':'black-spot'
+}
