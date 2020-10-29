@@ -21,15 +21,18 @@ if args.process=="train":
     SOURCE_IMAGE_DIR = "Train"
     SOURCE_LABEL_NAME = "train.csv"
     DATA_DIR = 'train'
+    yolo_label_dir = os.path.join(BASE_DIR, 'mango-defects-data/labels/train')
+    yolo_image_dir = os.path.join(BASE_DIR, 'mango-defects-data/images/train')
 elif args.process=="dev":
     SOURCE_IMAGE_DIR = "Dev"
     SOURCE_LABEL_NAME = "dev.csv"
     DATA_DIR = 'dev'
+    yolo_label_dir = os.path.join(BASE_DIR, 'mango-defects-data/labels/dev')
+    yolo_image_dir = os.path.join(BASE_DIR, 'mango-defects-data/images/dev')
 else:
     raise Exception("Plz set process data dev/train")
 
-yolo_label_dir = os.path.join(BASE_DIR, 'mango-defects-data/labels/dev')
-yolo_image_dir = os.path.join(BASE_DIR, 'mango-defects-data/images/dev')
+
 
 with open(os.path.join(BASE_DIR, 'data/mango-defect.yaml'), 'r') as yaml_file:
     config = yaml.load(yaml_file)
