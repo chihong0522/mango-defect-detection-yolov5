@@ -1,17 +1,11 @@
 import csv
-import json
 import os
-
 import cv2
-import numpy as np
+from config import *
 
-DATA_DIR_PATH = "/home/chihung/mango-defect-detection-yolov5/mango-defects-data"
-IMAGE_DIR = "Test"
-LABEL_NAME = "Test_mangoXYWH.csv"
-SAVE_CROPPED_TEST_IMG_DIR = "/home/chihung/mango-defect-detection-yolov5/cropped_test"
 
 def crop_test_img():
-    with open(os.path.join(DATA_DIR_PATH, LABEL_NAME), 'r', newline='', encoding='UTF-8-sig') as train_csv:
+    with open(UPLOAD_CSV_TEMPLATE_PATH, 'r', newline='', encoding='UTF-8-sig') as train_csv:
         rows = list(csv.reader(train_csv))
     del rows[0]
     cropping_list = [[y for y in x if len(y) > 0] for x in rows]
@@ -19,16 +13,15 @@ def crop_test_img():
         file_name = img[0]
         mango_coordinate = img[1:]
         crop_img(
-            input_path= os.path.join(DATA_DIR_PATH, IMAGE_DIR, file_name),
+            input_path=os.path.join(MANGO_DATA_DIR, "Test", file_name),
             coordinate=mango_coordinate,
-            output_path= os.path.join(SAVE_CROPPED_TEST_IMG_DIR, file_name),
-            )
+            output_path=os.path.join(SAVE_CROPPED_TEST_IMG_DIR, file_name),
+        )
 
     print("Test image cropping finished")
 
 
-
-def crop_img(input_path,coordinate,output_path):
+def crop_img(input_path, coordinate, output_path):
     if not os.path.exists(input_path):
         raise Exception(f"Cropping Path Not Found - {input_path}")
 
@@ -40,9 +33,9 @@ def crop_img(input_path,coordinate,output_path):
     print(f"write cropped img to {output_path}")
 
 
-
 def main():
     crop_test_img()
+
 
 if __name__ == "__main__":
     main()
