@@ -78,9 +78,12 @@ def train(hyp, opt, device, tb_writer=None):
         logger.info('Transferred %g/%g items from %s' % (len(state_dict), len(model.state_dict()), weights))  # report
     else:
         model = Model(opt.cfg, ch=3, nc=nc).to(device)  # create
+    
+    print(model)
 
     # Freeze
-    freeze = ['', ]  # parameter names to freeze (full or partial)
+    # freeze = [f'model.{x}.m' for x in range(24)]   # parameter names to freeze (full or partial)
+    freeze =[]
     if any(freeze):
         for k, v in model.named_parameters():
             if any(x in k for x in freeze):

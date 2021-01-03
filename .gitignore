@@ -20,8 +20,8 @@
 *.data
 *.json
 
-mango-defects-data/images/
-mango-defects-data/labels/
+mango-defects-data/
+inference/
 *.cfg
 !cfg/yolov3*.cfg
 
